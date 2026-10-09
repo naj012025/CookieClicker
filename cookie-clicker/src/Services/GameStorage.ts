@@ -1,4 +1,4 @@
-import { defaultSave } from "../data/GameSave";
+import { defaultSave, isGameSave } from "../data/GameSave";
 import type { GameSave } from "../data/GameSave";
 
 const SAVE_KEY = "cookieClickerSave";
@@ -6,7 +6,7 @@ const SAVE_KEY = "cookieClickerSave";
 export function loadGame(): GameSave {
     try {
         const raw = window.localStorage.getItem(SAVE_KEY);
-        if(raw=== null) return {...defaultSave};
+        if(raw === null) return {...defaultSave};
 
         const parsed: unknown = JSON.parse(raw);
         return isGameSave(parsed) ? parsed : {...defaultSave};
